@@ -1,9 +1,8 @@
 const express = require('express');
 const carsRouter = require('../cars/carsRouter');
-// const db = require('../data/car-dealer');
-
 
 const server= express();
+
 server.use('/api/cars', carsRouter);
 server.use(express.json());
 
