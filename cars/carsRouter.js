@@ -55,6 +55,26 @@ router.post('/', (req,res) =>{
     })
 })
 
+router.put('/:id', (req,res) =>{
+    db('cars')
+    .where('id', req.params.id)
+    .update(req.body)
+    .then(car =>{
+        if(car && car.length !== 0){
+            res.status(200).json(car)
+        }else{
+            res.status(404).json({
+                message: 'Car does not exist with that ID'
+            })
+        }
+    })
+    .catch(error =>{
+        res.status(500).json({
+            errorMessage: 'Unable to update'
+        })
+    })
+})
+
 router.delete('/:id', (req, res) =>{
     db('cars')
     .where('id', req.params.id)
